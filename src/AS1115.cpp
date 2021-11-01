@@ -77,7 +77,7 @@ void AS1115::clear()
 	Wire.endTransmission();
 }
 
-void AS1115::display(uint16_t value) 
+void AS1115::display(uint16_t value, int decimal_digit)
 {
 	uint8_t n = _digits;
 
@@ -85,7 +85,11 @@ void AS1115::display(uint16_t value)
 	Wire.write(DIGIT0); //first digit to write is #1
 
 	while (n--) {
-		Wire.write(digits[nthdigit(value, n)]);
+		uint8_t val = digits[nthdigit(value, n)];
+		if (n == decimal_digit) {
+			val |= AS1115_DOT;
+		}
+		Wire.write(val);
 	};
 
 	Wire.endTransmission();

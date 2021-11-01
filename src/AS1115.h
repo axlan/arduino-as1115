@@ -155,8 +155,11 @@ public:
 	void clear();
 	/**
 	 * Display an unsigned integer on the display.
+	 * 
+	 * decimal_digit is the digit to light the DP segment on.
+	 * If < 0 no digit will have it's DP segment lit.
 	 */
-	void display(uint16_t value);
+	void display(uint16_t value, int decimal_digit=-1);
 	/**
 	 * Display a string on the display. Note that '.' in the string will be displayed on the following digit.
 	 */
